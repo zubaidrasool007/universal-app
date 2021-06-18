@@ -1,3 +1,7 @@
-<div class="youtube-video">
-    <iframe src="https://angular.io/guide/universal#universal-web-server" frameborder="0"></iframe>
+<div *ngIf="userMetaData" class="youtube-video">
+    <h2>{{userMetaData.title}}</h2>
+    <div class="description" [innerHTML]="userMetaData.description"></div>
+    <div>
+        <img [src]="decodeUri(userMetaData.image)" alt="Testing Image">
+    </div>
 </div>
