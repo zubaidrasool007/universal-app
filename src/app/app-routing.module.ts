@@ -11,15 +11,15 @@ const routes: Routes = [
     component: AppComponent,
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        component: UserComponent
+      },
+      {
         path: 'home',
         pathMatch: 'full',
         component: HomeComponent,
       },
-      {
-        path: 'user',
-        pathMatch: 'full',
-        component: UserComponent
-      }
     ]
   }
 ];
