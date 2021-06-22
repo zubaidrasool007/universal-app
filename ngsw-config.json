@@ -12,6 +12,9 @@
           "/manifest.webmanifest",
           "/*.css",
           "/*.js"
+        ],
+        "urls": [
+          "https://media-exp1.licdn.com/dms/image/*"
         ]
       }
     },
