@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "dev:ssr": "ng run test-app:serve-ssr",
     "serve:ssr": "node dist/test-app/server/main.js",
-    "build:ssr": "ng build && ng run test-app:server",
+    "build:ssr": "ng build --output-hashing=none && ng run test-app:server",
     "prerender": "ng run test-app:prerender",
     "test": "ng test"
   },
