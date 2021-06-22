@@ -1,7 +1,26 @@
-<div *ngIf="userMetaData" class="youtube-video">
-    <div class="title">
-        <img [src]="decodeUri(userMetaData.image)" alt="Testing Image">
-        <h2>{{userMetaData.title}}</h2>
+<div *ngIf="userData; else metaData">
+    <div *ngIf="userData" class="youtube-video">
+        <div class="title">
+            <img *ngIf="userData.image" [src]="decodeUri(userData.image)" alt="Testing Image">
+            <h2>{{userData.title}}</h2>
+        </div>
+        <div class="description" [innerHTML]="userData.description"></div>
+        <ul *ngFor="let project of userData.projects">
+            <li>
+                {{project.title}}
+            </li>
+            <li>
+                {{project.description}}
+            </li>
+        </ul>
     </div>
-    <div class="description" [innerHTML]="userMetaData.description"></div>
 </div>
+<ng-template #metaData>
+    <div *ngIf="userMetaData" class="youtube-video">
+        <div class="title">
+            <img *ngIf="userMetaData.image" [src]="decodeUri(userMetaData.image)" alt="Testing Image">
+            <h2>{{userMetaData.title}}</h2>
+        </div>
+        <div class="description" [innerHTML]="userMetaData.description"></div>
+    </div>
+</ng-template>

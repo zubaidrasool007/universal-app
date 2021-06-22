@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Title, Meta } from "@angular/platform-browser";
 import { take } from 'rxjs/operators';
 import { UserService } from "./services/user.service";
@@ -6,10 +6,11 @@ import { UserService } from "./services/user.service";
 @Component({
     selector: 'app-user',
     templateUrl: './user.component.html',
-    styleUrls: ['./user.component.scss']
+    styleUrls: ['./user.component.sass']
 })
-export class UserComponent {
+export class UserComponent implements OnInit {
     userMetaData: any;
+    userData: any;
 
     constructor(
         private userService: UserService,
@@ -21,8 +22,20 @@ export class UserComponent {
             this.metaTagService.updateTag({ 'description': this.userMetaData.description });
             this.metaTagService.updateTag({ 'og:description': this.userMetaData.description });
             this.metaTagService.updateTag({ 'twitter:description': this.userMetaData.description });
-            this.metaTagService.updateTag({ 'og:image': this.userMetaData.image });
+            this.userMetaData.image && this.metaTagService.updateTag({ 'og:image': this.userMetaData.image });
             this.titleService.setTitle(this.userMetaData.title);
+        });
+    }
+
+    ngOnInit(): void {
+        this.getUserData();
+    }
+
+    getUserData(): void {
+        this.userService.getUserData().pipe(take(1)).subscribe(user => {
+            this.userData = user;
+        }, error => {
+            console.log('user API error :>> ', error);
         });
     }
 
