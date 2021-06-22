@@ -15,6 +15,10 @@ export class UserService {
     }
 
     getUserMetaData(): Observable<any> {
-        return this.http.get(`${this.API_URL}/users`, { headers: { 'Access-Control-Allow-Origin': '*' } });
+        return this.http.get(`${this.API_URL}/users`);
+    }
+
+    getUserData(): Observable<any> {
+        return this.http.get(`${this.API_URL}/users/1`);
     }
 }
